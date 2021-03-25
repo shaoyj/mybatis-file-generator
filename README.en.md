@@ -1,9 +1,9 @@
 # mybatis-file-generator
 
 #### Description
-解决mybatis数据库CRUD配置的一键生成；
-支持使用者定制；
-支持apollo 等各自方式获取数据源；
+One-click generation of configuration files of mybatis operation data based on java; 
+support user customization;
+Support custom methods such as apollo to obtain data sources;
 
 #### Software Architecture
 Software architecture description
@@ -13,13 +13,102 @@ Software architecture description
 1.  git clone https://gitee.com/Mylomen/mybatis-file-generator.git
 2.  cd  mybatis-file-generator
 3.  mvn clean && mvn deploy
-4.  
+4.  Introduce maven dependency
 
 #### Instructions
+This tool is suitable for java projects; and one of the application.properties or application.yml files is expected, and the spring.application.name parameter is required in the file;
+```aidl
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+import com.mylomen.mybatis.domain.XxqMybatisBO;
+import com.mylomen.mybatis.helper.DbInfoHelper;
+import org.junit.Test;
+
+/**
+ * @author: Shaoyongjun
+ * @date: 2020/11/4
+ * @time: 9:35 下午
+ * @copyright by  上海鱼泡泡信息技术有限公司
+ */
+public class XxqMybatisDemoTestController {
+
+    @Test
+    public void demoTest() {
+
+//        firstDemo();
+
+        apollo();
+
+//        recommend();
+
+//        simple();
+    }
+
+    private static void firstDemo() {
+        //1. 初始化
+        XxqMybatisBO xxqMybatisBO = DbInfoHelper.getTabInfoList(XxqMybatisBO.builder()
+                .xmlFilePath("XXX")
+                .mapperFilePath("XXX")
+                .entityFilePath("XXX")
+
+                .driver("com.mysql.jdbc.Driver")
+                .dbUrl("jdbc:mysql://rm-bp1tu2eq09a7hb658.mysql.rds.aliyuncs.com:3306/yuer_anchor")
+                .userName("yuer_anchor_rw")
+                .password("zOSYp8XbLmC6Toh7")
+                .table("t_anchor_credit").build());
+
+
+        //2. 生成 xml
+        xxqMybatisBO.createXml();
+
+        //3. 生成 mapper
+        xxqMybatisBO.generateMapper();
+
+        //4. 生成 DO
+        xxqMybatisBO.generateEntity();
+    }
+
+    private static void apollo() {
+        XxqMybatisBO mybatisBO = ApolloHelper.getTabInfoList(
+                "middleware.db.yuer-live-service",
+                XxqMybatisBO.builder()
+                        .mapperPackage("com.yupaopao.mybatis.util.test")
+                        .entityPackage("com.yupaopao.mybatis.util.test")
+                        .table("t_anchor_credit")
+                        .build());
+
+        mybatisBO.generateXmlMapperEntity();
+
+        mybatisBO.generateXmlMapperEntity();
+    }
+
+    private static void recommend() {
+        //1. 定义
+        XxqMybatisBO xxqMybatisBO = ApolloHelper.getTabInfoList(XxqMybatisBO.builder()
+                .mapperPackage("com.yupaopao.mybatis.util.test")
+                .entityPackage("com.yupaopao.mybatis.util.test")
+                .table("t_anchor_credit")
+                .build());
+
+        //2. 生成 xml
+        xxqMybatisBO.createXml();
+
+        //3. 生成 mapper
+        xxqMybatisBO.generateMapper();
+
+        //4. 生成 DO
+        xxqMybatisBO.generateEntity();
+    }
+
+    /**
+     * 默认文件 路径 mybatisUtils
+     */
+    private static void simple() {
+        ApolloHelper.getTabInfoList(XxqMybatisBO.builder().table("t_anchor_credit").build())
+                .generateXmlMapperEntity();
+    }
+}
+
+```
 
 #### Contribution
 
@@ -30,10 +119,3 @@ Software architecture description
 
 
 #### Gitee Feature
-
-1.  You can use Readme\_XXX.md to support different languages, such as Readme\_en.md, Readme\_zh.md
-2.  Gitee blog [blog.gitee.com](https://blog.gitee.com)
-3.  Explore open source project [https://gitee.com/explore](https://gitee.com/explore)
-4.  The most valuable open source project [GVP](https://gitee.com/gvp)
-5.  The manual of Gitee [https://gitee.com/help](https://gitee.com/help)
-6.  The most popular members  [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
