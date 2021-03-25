@@ -10,9 +10,10 @@ Software architecture description
 
 #### Installation
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  git clone https://gitee.com/Mylomen/mybatis-file-generator.git
+2.  cd  mybatis-file-generator
+3.  mvn clean && mvn deploy
+4.  
 
 #### Instructions
 
