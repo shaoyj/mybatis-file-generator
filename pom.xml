@@ -89,18 +89,6 @@
 
 
     <!-- 自行填充 deploy 地址-->
-    <distributionManagement>
-        <repository>
-            <id>yupaopao-release</id>
-            <name>releases</name>
-            <url>http://maven.yupaopao.com/nexus/content/repositories/releases</url>
-        </repository>
-        <snapshotRepository>
-            <id>yupaopao-snapshots</id>
-            <name>snapshot</name>
-            <url>http://maven.yupaopao.com/nexus/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
 
     <build>
         <plugins>
