@@ -146,9 +146,6 @@ public class XxqMybatisBO implements Serializable {
 
         //3. 生成 DO
         generateEntity();
-
-        //生成文件完成。 需要重新解析
-        this.reloadFilePath = true;
     }
 
 
@@ -215,6 +212,7 @@ public class XxqMybatisBO implements Serializable {
             this.setEntityFilePath(workSpace + "/src/main/java/" + this.getEntityPackage().replaceAll("\\.", "/") + "/" + beanName + "DO.java");
         }
 
+        this.reloadFilePath = true;
 
         //生成entity 包路径 和 类名称
         this.autoParseEntityClazzInfo();
@@ -222,6 +220,7 @@ public class XxqMybatisBO implements Serializable {
         //生成Mapper 包路径 和 类名称
         this.autoParseMapperClazzInfo();
 
+        this.reloadFilePath = false;
         return this;
     }
 }

@@ -1,4 +1,4 @@
-package com.mylomen.mybatis;
+package com.mylomen.mybatis.utils;
 
 import com.ctrip.framework.apollo.Config;
 import com.ctrip.framework.apollo.ConfigService;
@@ -15,7 +15,12 @@ import java.util.Set;
  */
 public class ApolloUtils {
 
+    /**
+     * @param namespace
+     * @return
+     */
     public static Config getNoEmptyConfigByNamespace(String namespace) {
+
         try {
             Config config = ConfigService.getConfig(StringUtils.isEmpty(namespace) ? "application" : namespace);
             Set<String> propertyNames = config.getPropertyNames();

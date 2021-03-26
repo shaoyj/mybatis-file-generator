@@ -7,8 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 import org.yaml.snakeyaml.Yaml;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +19,10 @@ import java.util.Properties;
  * @copyright by  上海鱼泡泡信息技术有限公司
  */
 public class PropertiesHelper {
+
+    /**
+     * 此处引入log
+     */
     private static final Logger logger = LoggerFactory.getLogger(PropertiesHelper.class);
 
     private static Map<String, Map<String, Object>> ymlProperties = new HashMap<>();
@@ -31,16 +33,12 @@ public class PropertiesHelper {
     public static final PropertiesHelper instance = new PropertiesHelper();
 
     static {
-        File file = new File("application.yml");
-        if (file.exists()) {
-            Yaml yaml = new Yaml();
-            try (InputStream in = PropertiesHelper.class.getClassLoader().getResourceAsStream("application.yml");) {
-                ymlProperties = yaml.loadAs(in, HashMap.class);
-            } catch (Exception e) {
-                logger.error("Init yaml failed !", e);
-            }
-        } else {
-            ymlProperties = null;
+        Yaml yaml = new Yaml();
+        try (InputStream in = PropertiesHelper.class.getClassLoader().getResourceAsStream("application.yml");) {
+            ymlProperties = yaml.loadAs(in, HashMap.class);
+        } catch (Exception e) {
+            System.err.println("Init yaml failed ! msg : " + e.getMessage());
+            logger.error("Init yaml failed ! msg_{}", e.getMessage());
         }
     }
 
@@ -54,25 +52,25 @@ public class PropertiesHelper {
     }
 
     public static String getApplicationValueFromProperties(String key) {
-        File file = new File("application.properties");
-        if (file.exists()) {
-            Properties properties = new Properties();
+        Properties properties = new Properties();
+
+        // 使用properties对象加载输入流
+        try {
+
             // 使用ClassLoader加载properties配置文件生成对应的输入流
             InputStream in = PropertiesHelper.class.getClassLoader().getResourceAsStream("application.properties");
-            // 使用properties对象加载输入流
-            try {
-                properties.load(in);
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (in == null) {
+                System.err.println("###### 项目中找不到 application.properties 文件 ######");
                 return null;
             }
-
-            //获取key对应的value值
-            return properties.getProperty(key);
+            properties.load(in);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
 
-        System.err.println("项目中找不到 application.properties 文件");
-        return null;
+        //获取key对应的value值
+        return properties.getProperty(key);
     }
 
     public static String getApplicationValueFromYml(String key) {
@@ -80,7 +78,7 @@ public class PropertiesHelper {
             return null;
         }
 
-        if (ymlProperties == null) {
+        if (ymlProperties == null || ymlProperties.isEmpty()) {
             System.err.println("###### 项目中也找不到 application.yml 文件 ######");
             return null;
         }

@@ -83,12 +83,24 @@
             <version>1.7.0</version>
 
             <!-- 如果引用的项目中有 apollo 依赖，这里建议使用 provided; 如果项目 中没有apollo 建议在项目中自行引入apollo 依赖。不建议在底层包引入过多的依赖 -->
-            <scope>test</scope>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
 
     <!-- 自行填充 deploy 地址-->
+    <distributionManagement>
+        <repository>
+            <id>yupaopao-release</id>
+            <name>releases</name>
+            <url>http://maven.yupaopao.com/nexus/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>yupaopao-snapshots</id>
+            <name>snapshot</name>
+            <url>http://maven.yupaopao.com/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <build>
         <plugins>

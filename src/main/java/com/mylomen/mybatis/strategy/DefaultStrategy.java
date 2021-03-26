@@ -1,7 +1,7 @@
-package com.mylomen.mybatis.helper;
+package com.mylomen.mybatis.strategy;
 
 import com.mylomen.mybatis.domain.XxqMybatisBO;
-import com.mylomen.mybatis.utils.DbInfoUtil;
+import com.mylomen.mybatis.helper.DbInfoUtil;
 
 /**
  * @author: Shaoyongjun
@@ -9,7 +9,7 @@ import com.mylomen.mybatis.utils.DbInfoUtil;
  * @time: 8:21 下午
  * @copyright by  上海鱼泡泡信息技术有限公司
  */
-public class DbInfoHelper {
+public class DefaultStrategy implements ParseTabInfoListStrategy {
 
 
     /**
@@ -30,4 +30,8 @@ public class DbInfoHelper {
         return dbBaseInfo.autoParse();
     }
 
+    @Override
+    public XxqMybatisBO parseTabInfoList(XxqMybatisBO dbBaseInfo) {
+        return getTabInfoList(dbBaseInfo);
+    }
 }

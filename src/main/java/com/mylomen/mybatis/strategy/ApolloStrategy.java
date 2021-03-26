@@ -1,8 +1,9 @@
-package com.mylomen.mybatis;
+package com.mylomen.mybatis.strategy;
 
 import com.ctrip.framework.apollo.Config;
 import com.mylomen.mybatis.domain.XxqMybatisBO;
-import com.mylomen.mybatis.utils.DbInfoUtil;
+import com.mylomen.mybatis.helper.DbInfoUtil;
+import com.mylomen.mybatis.utils.ApolloUtils;
 import com.mylomen.mybatis.utils.PropertiesHelper;
 import org.springframework.util.StringUtils;
 
@@ -14,10 +15,14 @@ import org.springframework.util.StringUtils;
  * @time: 8:15 下午
  * @copyright by  上海鱼泡泡信息技术有限公司
  */
-public class ApolloHelper {
+public class ApolloStrategy implements ParseTabInfoListStrategy {
 
-    public static XxqMybatisBO getTabInfoList(XxqMybatisBO xxqMybatisBO) {
-        return getTabInfoList(null, xxqMybatisBO);
+    static {
+        //默认是test 环境. 如果需要更改 可以额外指定
+        //System.getProperties().setProperty("env", "test");
+
+        //如果项目中没有引入apollo 或者项目中没有封装 apollo.meta 的初始化。可以在这里设置apollo meta 地址
+        // System.getProperties().setProperty("apollo.meta", "https://xxx.cn");
     }
 
     /**
@@ -25,15 +30,15 @@ public class ApolloHelper {
      *
      * @return
      */
-    public static XxqMybatisBO getTabInfoList(String dbNamespace, XxqMybatisBO xxqMybatisBO) {
+    public static XxqMybatisBO getTabInfoList(XxqMybatisBO xxqMybatisBO) {
 
+        //获取系统指定的 dbNamespace
+        String dbNamespace = System.getProperties().getProperty("myDbNamespace");
 
-        //获取apolloConfig by dbNamespace or config
+        //get config by dbNamespace(by System settings OR According to the project name)
         Config config = null;
         if (StringUtils.isEmpty(dbNamespace)) {
-
             //根据自己项目中 dbNamespace 的命名规律自行实现自动拼接。以下是一个demo
-
             String applicationName = PropertiesHelper.getApplicationKey("spring.application.name");
             dbNamespace = "middleware.db." + applicationName;
             config = ApolloUtils.getNoEmptyConfigByNamespace(dbNamespace);
@@ -69,5 +74,10 @@ public class ApolloHelper {
 
 
         return xxqMybatisBO.autoParse();
+    }
+
+    @Override
+    public XxqMybatisBO parseTabInfoList(XxqMybatisBO dbBaseInfo) {
+        return getTabInfoList(dbBaseInfo);
     }
 }

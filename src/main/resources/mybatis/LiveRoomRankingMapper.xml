@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mybatisUtils.LiveRoomRankingMapper">
+    <resultMap id="baseResultMap" type="mybatisUtils.LiveRoomRankingDO">
+        <result column="id" property="id"/>
+        <result column="dot_time" property="dotTime"/>
+        <result column="top_category_id" property="topCategoryId"/>
+        <result column="live_type" property="liveType"/>
+        <result column="top" property="top"/>
+        <result column="total_score" property="totalScore"/>
+        <result column="live_room_id" property="liveRoomId"/>
+        <result column="host_name" property="hostName"/>
+        <result column="anchor_id" property="anchorId"/>
+        <result column="live_status_score" property="liveStatusScore"/>
+        <result column="consumer_score" property="consumerScore"/>
+        <result column="conversion_score" property="conversionScore"/>
+        <result column="operation_score" property="operationScore"/>
+        <result column="play_score" property="playScore"/>
+        <result column="category_id" property="categoryId"/>
+        <result column="high_quality" property="highQuality"/>
+        <result column="hot_value" property="hotValue"/>
+        <result column="deleted" property="deleted"/>
+        <result column="version" property="version"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+		id, dot_time, top_category_id, live_type, top, total_score, live_room_id, host_name, anchor_id, live_status_score, consumer_score, conversion_score, operation_score, play_score, category_id, high_quality, hot_value, deleted, version, create_time, update_time
+	</sql>
+    <sql id="condition">
+        <if test="data!=null">
+            <if test="data.dotTime!=null">
+				AND dot_time = #{data.dotTime}
+			</if>
+            <if test="data.topCategoryId!=null">
+				AND top_category_id = #{data.topCategoryId}
+			</if>
+            <if test="data.liveType!=null">
+				AND live_type = #{data.liveType}
+			</if>
+            <if test="data.top!=null">
+				AND top = #{data.top}
+			</if>
+            <if test="data.totalScore!=null">
+				AND total_score = #{data.totalScore}
+			</if>
+            <if test="data.liveRoomId!=null">
+				AND live_room_id = #{data.liveRoomId}
+			</if>
+            <if test="data.hostName!=null">
+				AND host_name = #{data.hostName}
+			</if>
+            <if test="data.anchorId!=null">
+				AND anchor_id = #{data.anchorId}
+			</if>
+            <if test="data.liveStatusScore!=null">
+				AND live_status_score = #{data.liveStatusScore}
+			</if>
+            <if test="data.consumerScore!=null">
+				AND consumer_score = #{data.consumerScore}
+			</if>
+            <if test="data.conversionScore!=null">
+				AND conversion_score = #{data.conversionScore}
+			</if>
+            <if test="data.operationScore!=null">
+				AND operation_score = #{data.operationScore}
+			</if>
+            <if test="data.playScore!=null">
+				AND play_score = #{data.playScore}
+			</if>
+            <if test="data.categoryId!=null">
+				AND category_id = #{data.categoryId}
+			</if>
+            <if test="data.highQuality!=null">
+				AND high_quality = #{data.highQuality}
+			</if>
+            <if test="data.hotValue!=null">
+				AND hot_value = #{data.hotValue}
+			</if>
+            <if test="data.deleted!=null">
+				AND deleted = #{data.deleted}
+			</if>
+            <if test="data.version!=null">
+				AND version = #{data.version}
+			</if>
+            <if test="data.createTime!=null">
+				AND create_time = #{data.createTime}
+			</if>
+            <if test="data.updateTime!=null">
+				AND update_time = #{data.updateTime}
+			</if>
+        </if>
+    </sql>
+    <sql id="setField">
+        <set>
+            <if test="dotTime!=null"> dot_time = #{dotTime},</if>
+            <if test="topCategoryId!=null"> top_category_id = #{topCategoryId},</if>
+            <if test="liveType!=null"> live_type = #{liveType},</if>
+            <if test="top!=null"> top = #{top},</if>
+            <if test="totalScore!=null"> total_score = #{totalScore},</if>
+            <if test="liveRoomId!=null"> live_room_id = #{liveRoomId},</if>
+            <if test="hostName!=null"> host_name = #{hostName},</if>
+            <if test="anchorId!=null"> anchor_id = #{anchorId},</if>
+            <if test="liveStatusScore!=null"> live_status_score = #{liveStatusScore},</if>
+            <if test="consumerScore!=null"> consumer_score = #{consumerScore},</if>
+            <if test="conversionScore!=null"> conversion_score = #{conversionScore},</if>
+            <if test="operationScore!=null"> operation_score = #{operationScore},</if>
+            <if test="playScore!=null"> play_score = #{playScore},</if>
+            <if test="categoryId!=null"> category_id = #{categoryId},</if>
+            <if test="highQuality!=null"> high_quality = #{highQuality},</if>
+            <if test="hotValue!=null"> hot_value = #{hotValue},</if>
+            <if test="deleted!=null"> deleted = #{deleted},</if>
+            <if test="version!=null"> version = #{version},</if>
+            <if test="createTime!=null"> create_time = #{createTime},</if>
+            <if test="updateTime!=null"> update_time = #{updateTime},</if>
+        </set>
+    </sql>
+    <insert id="add" parameterType="mybatisUtils.LiveRoomRankingDO">
+		insert into live_room_ranking
+ 		<include refid="setField"/>
+	</insert>
+    <delete id="remove">
+		DELETE FROM live_room_ranking
+ 		WHERE id = #{id}
+	</delete>
+    <update id="update" parameterType="mybatisUtils.LiveRoomRankingDO">
+		update live_room_ranking
+ 		<include refid="setField"/> 
+		WHERE id = #{id}
+	</update>
+    <select id="findById" parameterType="Long" resultMap="baseResultMap">
+		SELECT
+			<include refid="Base_Column_List"/>
+		FROM 
+			live_room_ranking 
+		WHERE id=#{id}  
+		limit 1 
+	</select>
+    <select id="findByIdList" resultMap="baseResultMap">
+		SELECT
+			<include refid="Base_Column_List"/>
+		FROM 
+			live_room_ranking
+		WHERE id in
+		<foreach close=")" collection="idList" item="itemId" open="(" separator=",">
+			#{itemId}
+		</foreach>
+	</select>
+    <select id="count" resultType="Long">
+		SELECT
+			count(*) as total
+		FROM 
+			live_room_ranking
+		WHERE 1=1
+		<include refid="condition"/>
+	</select>
+    <select id="queryPage" resultMap="baseResultMap">
+		SELECT
+			<include refid="Base_Column_List"/>
+		FROM 
+			live_room_ranking
+		WHERE 1=1
+		<include refid="condition"/>
+		limit #{left},#{pageSize}
+	</select>
+</mapper>

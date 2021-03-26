@@ -1,4 +1,4 @@
-package com.mylomen.mybatis.utils;
+package com.mylomen.mybatis.helper;
 
 
 import com.mylomen.mybatis.domain.DbTabInfo;

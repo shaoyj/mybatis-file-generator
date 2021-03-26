@@ -23,16 +23,11 @@
 ```aidl
 
 import com.mylomen.mybatis.domain.XxqMybatisBO;
-import com.mylomen.mybatis.helper.DbInfoHelper;
+import com.mylomen.mybatis.strategy.DefaultStrategy;
 import org.junit.Test;
 
-/**
- * @author: Shaoyongjun
- * @date: 2020/11/4
- * @time: 9:35 下午
- * @copyright by  上海鱼泡泡信息技术有限公司
- */
-public class XxqMybatisDemoTestController {
+
+public class XxqMybatisTestDemo {
 
     @Test
     public void demoTest() {
@@ -48,7 +43,7 @@ public class XxqMybatisDemoTestController {
 
     private static void firstDemo() {
         //1. 初始化
-        XxqMybatisBO xxqMybatisBO = DbInfoHelper.getTabInfoList(XxqMybatisBO.builder()
+        XxqMybatisBO xxqMybatisBO = DefaultStrategy.getTabInfoList(XxqMybatisBO.builder()
                 .xmlFilePath("XXX")
                 .mapperFilePath("XXX")
                 .entityFilePath("XXX")
@@ -71,25 +66,23 @@ public class XxqMybatisDemoTestController {
     }
 
     private static void apollo() {
-        XxqMybatisBO mybatisBO = ApolloHelper.getTabInfoList(
-                "middleware.db.yuer-live-service",
-                XxqMybatisBO.builder()
-                        .mapperPackage("com.yupaopao.mybatis.util.test")
-                        .entityPackage("com.yupaopao.mybatis.util.test")
-                        .table("t_anchor_credit")
-                        .build());
+        //如果需要指定 myDbNamespace
+        System.getProperties().setProperty("myDbNamespace", "except->dbNamespace");
 
-        mybatisBO.generateXmlMapperEntity();
+        XxqMybatisBO mybatisBO = ApolloStrategy.getTabInfoList(
+                XxqMybatisBO.builder()
+                        .table("yourTableName")
+                        .build());
 
         mybatisBO.generateXmlMapperEntity();
     }
 
     private static void recommend() {
         //1. 定义
-        XxqMybatisBO xxqMybatisBO = ApolloHelper.getTabInfoList(XxqMybatisBO.builder()
-                .mapperPackage("com.yupaopao.mybatis.util.test")
-                .entityPackage("com.yupaopao.mybatis.util.test")
-                .table("t_anchor_credit")
+        XxqMybatisBO xxqMybatisBO = ApolloStrategy.getTabInfoList(XxqMybatisBO.builder()
+                .mapperPackage("mapper.package.path")
+                .entityPackage("entity.package.path")
+                .table("yourTableName")
                 .build());
 
         //2. 生成 xml
@@ -106,9 +99,9 @@ public class XxqMybatisDemoTestController {
      * 默认文件 路径 mybatisUtils
      */
     private static void simple() {
-        ApolloHelper.getTabInfoList(XxqMybatisBO.builder().table("t_anchor_credit").build())
-                .generateXmlMapperEntity();
+        ApolloStrategy.getTabInfoList(XxqMybatisBO.builder().table("yourTableName").build()).generateXmlMapperEntity();
     }
-}
+    
+ }
 
 ```
