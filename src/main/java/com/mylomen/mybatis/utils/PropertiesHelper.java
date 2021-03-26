@@ -16,7 +16,7 @@ import java.util.Properties;
  * @author: Shaoyongjun
  * @date: 2021/1/20
  * @time: 10:21 上午
- * @copyright by  上海鱼泡泡信息技术有限公司
+ * @copyright
  */
 public class PropertiesHelper {
 

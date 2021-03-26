@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author: Shaoyongjun
  * @date: 2020/11/14
  * @time: 7:38 下午
- * @copyright by  上海鱼泡泡信息技术有限公司
+ * @copyright
  */
 @Getter
 public class XxqMybatisClazzInfo implements Serializable {

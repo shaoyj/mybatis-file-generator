@@ -7,7 +7,7 @@ import com.mylomen.mybatis.helper.DbInfoUtil;
  * @author: Shaoyongjun
  * @date: 2021/3/25
  * @time: 8:21 下午
- * @copyright by  上海鱼泡泡信息技术有限公司
+ * @copyright
  */
 public class DefaultStrategy implements ParseTabInfoListStrategy {
 

@@ -17,7 +17,7 @@ import java.io.InputStreamReader;
  * @author: Shaoyongjun
  * @date: 2021/3/26
  * @time: 12:48 下午
- * @copyright by  上海鱼泡泡信息技术有限公司
+ * @copyright
  */
 public class SimpleApolloConfigDemo {
 

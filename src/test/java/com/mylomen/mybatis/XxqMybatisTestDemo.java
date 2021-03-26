@@ -10,7 +10,7 @@ import org.junit.Test;
  * @author: Shaoyongjun
  * @date: 2020/11/4
  * @time: 9:35 下午
- * @copyright by  上海鱼泡泡信息技术有限公司
+ * @copyright
  */
 public class XxqMybatisTestDemo {
 

@@ -17,7 +17,7 @@ import java.util.Properties;
  * @author: Shaoyongjun
  * @date: 2020/11/3
  * @time: 11:18 上午
- * @copyright by  上海鱼泡泡信息技术有限公司
+ * @copyright
  */
 public class DbInfoUtil {
 

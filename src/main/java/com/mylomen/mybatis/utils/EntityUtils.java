@@ -15,7 +15,7 @@ import java.util.List;
  * @author: Shaoyongjun
  * @date: 2020/11/13
  * @time: 7:54 下午
- * @copyright by  上海鱼泡泡信息技术有限公司
+ * @copyright
  */
 public class EntityUtils {
 

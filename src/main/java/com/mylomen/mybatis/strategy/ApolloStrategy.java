@@ -8,12 +8,12 @@ import com.mylomen.mybatis.utils.PropertiesHelper;
 import org.springframework.util.StringUtils;
 
 /**
- * 注意 apollo 首先读取当前项目的 apollo 空间
+ *
  *
  * @author: Shaoyongjun
  * @date: 2021/3/25
  * @time: 8:15 下午
- * @copyright by  上海鱼泡泡信息技术有限公司
+ * @copyright
  */
 public class ApolloStrategy implements ParseTabInfoListStrategy {
 

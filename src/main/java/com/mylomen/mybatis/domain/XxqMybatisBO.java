@@ -19,7 +19,7 @@ import java.util.List;
  * @author: Shaoyongjun
  * @date: 2020/11/14
  * @time: 2:43 下午
- * @copyright by  上海鱼泡泡信息技术有限公司
+ * @copyright
  */
 @Getter
 @Setter

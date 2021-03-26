@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  * @author: Shaoyongjun
  * @date: 2020/11/3
  * @time: 2:35 下午
- * @copyright by  上海鱼泡泡信息技术有限公司
+ * @copyright
  */
 public class XmlUtils {
 

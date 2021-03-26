@@ -6,7 +6,7 @@ import java.io.File;
  * @author: Shaoyongjun
  * @date: 2020/11/17
  * @time: 9:57 上午
- * @copyright by  上海鱼泡泡信息技术有限公司
+ * @copyright
  */
 public class XxqFileUtils {
 
