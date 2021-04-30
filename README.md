@@ -2,7 +2,7 @@
 
 #### 介绍
 
-基于java的 mybatis 操作数据的配置文件 的一键生成；
+java语言开发中使用 mybatis 读写数据，一键生成配置文件；
 支持使用者定制； 
 支持apollo 等定制方式获取数据源；
 
@@ -49,9 +49,9 @@ public class XxqMybatisTestDemo {
                 .entityFilePath("XXX")
 
                 .driver("com.mysql.jdbc.Driver")
-                .dbUrl("jdbc:mysql://rm-bp1tu2eq09a7hb658.mysql.rds.aliyuncs.com:3306/yuer_anchor")
-                .userName("yuer_anchor_rw")
-                .password("zOSYp8XbLmC6Toh7")
+                .dbUrl("dbUrl")
+                .userName("userName")
+                .password("pwd")
                 .table("t_anchor_credit").build());
 
 

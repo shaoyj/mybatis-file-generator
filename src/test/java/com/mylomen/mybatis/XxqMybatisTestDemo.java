@@ -34,10 +34,10 @@ public class XxqMybatisTestDemo {
                 .entityFilePath("XXX")
 
                 .driver("com.mysql.jdbc.Driver")
-                .dbUrl("jdbc:mysql://rm-bp1tu2eq09a7hb658.mysql.rds.aliyuncs.com:3306/yuer_anchor")
-                .userName("yuer_anchor_rw")
-                .password("zOSYp8XbLmC6Toh7")
-                .table("t_anchor_credit").build());
+                .dbUrl("dbUrl")
+                .userName("userName")
+                .password("password")
+                .table("tableName").build());
 
 
         //2. 生成 xml
