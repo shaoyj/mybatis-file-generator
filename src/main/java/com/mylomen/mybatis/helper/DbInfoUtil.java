@@ -94,35 +94,14 @@ public class DbInfoUtil {
 
     private static String changeDbType(String dbType) {
         dbType = dbType.toUpperCase();
-        switch (dbType) {
-            case "VARCHAR":
-            case "VARCHAR2":
-            case "CHAR":
-                return "String";
-            case "NUMBER":
-            case "DECIMAL":
-                return "BigDecimal";
-            case "INT":
-            case "INT UNSIGNED":
-            case "SMALLINT":
-            case "SMALLINT UNSIGNED":
-            case "TINYINT":
-            case "TINYINT UNSIGNED":
-            case "INTEGER":
-            case "INTEGER UNSIGNED":
-                return "Integer";
-            case "BIGINT":
-            case "BIGINT UNSIGNED":
-                return "Long";
-            case "DATETIME":
-            case "TIMESTAMP":
-            case "DATE":
-                return "Date";
-            case "BIT":
-                return "Integer";
-            default:
-                return "String";
-        }
+        return switch (dbType) {
+            case "NUMBER", "DECIMAL" -> "BigDecimal";
+            case "INT", "INT UNSIGNED", "SMALLINT", "SMALLINT UNSIGNED", "TINYINT", "TINYINT UNSIGNED", "INTEGER",
+                 "INTEGER UNSIGNED", "BIT" -> "Integer";
+            case "BIGINT", "BIGINT UNSIGNED" -> "Long";
+            case "DATETIME", "TIMESTAMP", "DATE" -> "Date";
+            default -> "String";
+        };
     }
 
     /**
@@ -161,7 +140,7 @@ public class DbInfoUtil {
     private static String getSchema(Connection conn) throws Exception {
         String schema;
         schema = conn.getMetaData().getUserName();
-        if ((schema == null) || (schema.length() == 0)) {
+        if ((schema == null) || (schema.isEmpty())) {
             throw new Exception("ORACLE数据库模式不允许为空");
         }
         return schema.toUpperCase();

@@ -108,7 +108,7 @@ public class MapperUtils {
                 .append("\t * @param entity\n")
                 .append("\t * @return\n")
                 .append("\t */\n")
-                .append("\tint add(" + xxqMybatisBO.getEntityClazz() + " entity);\n\n");
+                .append("\tInteger add(" + xxqMybatisBO.getEntityClazz() + " entity);\n\n");
     }
 
     private static void remove(StringBuilder content, XxqMybatisBO xxqMybatisBO) {
@@ -117,7 +117,7 @@ public class MapperUtils {
                 .append("\t * @param id\n")
                 .append("\t * @return\n")
                 .append("\t */\n")
-                .append("\tint remove(@Param(\"id\") Long id);\n\n");
+                .append("\tInteger remove(@Param(\"id\") Long id);\n\n");
     }
 
 
@@ -127,7 +127,7 @@ public class MapperUtils {
                 .append("\t * @param entity\n")
                 .append("\t * @return\n")
                 .append("\t */\n")
-                .append("\tint update(" + xxqMybatisBO.getEntityClazz() + " entity);\n\n");
+                .append("\tInteger update(" + xxqMybatisBO.getEntityClazz() + " entity);\n\n");
     }
 
 
