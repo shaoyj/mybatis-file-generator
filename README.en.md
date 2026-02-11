@@ -44,7 +44,7 @@ public class XxqMybatisTestDemo {
                 .mapperFilePath("XXX")
                 .entityFilePath("XXX")
 
-                .driver("com.mysql.jdbc.Driver")
+                .driver("com.mysql.cj.jdbc.Driver")
                 .dbUrl("dbUrl")
                 .userName("userName")
                 .password("pwd")

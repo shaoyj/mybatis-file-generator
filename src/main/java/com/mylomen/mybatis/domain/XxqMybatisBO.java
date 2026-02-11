@@ -31,7 +31,7 @@ public class XxqMybatisBO implements Serializable {
     private static final long serialVersionUID = -2056682435323048848L;
 
     /**
-     * 默认 com.mysql.jdbc.Driver
+     * 默认 com.mysql.cj.jdbc.Driver
      */
     private String driver;
 

@@ -4,7 +4,7 @@ package com.mylomen.mybatis;
 import com.mylomen.mybatis.domain.XxqMybatisBO;
 import com.mylomen.mybatis.strategy.ApolloStrategy;
 import com.mylomen.mybatis.strategy.DefaultStrategy;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author: Shaoyongjun
@@ -32,8 +32,7 @@ public class XxqMybatisTestDemo {
                 .xmlFilePath("XXX")
                 .mapperFilePath("XXX")
                 .entityFilePath("XXX")
-
-                .driver("com.mysql.jdbc.Driver")
+                .driver("com.mysql.cj.jdbc.Driver")
                 .dbUrl("dbUrl")
                 .userName("userName")
                 .password("password")

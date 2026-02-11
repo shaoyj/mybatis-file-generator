@@ -1,123 +1,137 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.3.2</version>
+    </parent>
+
     <groupId>com.mylomen</groupId>
     <artifactId>mybatis-file-generator</artifactId>
-    <version>0.0.1.1</version>
+    <version>0.0.1.1-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <java.version>21</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
     </properties>
 
     <dependencies>
-        <!-- druid 数据库连接池 -->
+
+        <!-- Spring 基础 -->
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-            <version>1.0.14</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.25</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>21.0</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/dom4j/dom4j -->
-        <dependency>
-            <groupId>dom4j</groupId>
-            <artifactId>dom4j</artifactId>
-            <version>1.6.1</version>
-        </dependency>
-
+        <!-- MyBatis -->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>1.3.0</version>
+            <version>3.0.3</version>
         </dependency>
 
+        <!-- MySQL 8 驱动（注意包名变化） -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.4.0</version>
+        </dependency>
 
+        <!-- Druid 连接池 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>1.2.22</version>
+        </dependency>
+
+        <!-- Guava（现代版） -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>33.2.1-jre</version>
+        </dependency>
+
+        <!-- XML 解析 -->
+        <dependency>
+            <groupId>org.dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>2.1.4</version>
+        </dependency>
+
+        <!-- YAML -->
         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
-            <version>1.17</version>
-            <scope>provided</scope>
+            <version>2.2</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <!-- Lombok（JDK21 必须新版本） -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.16</version>
+            <version>1.18.32</version>
+            <scope>provided</scope>
         </dependency>
 
-        <!-- https://gitee.com/Mylomen/active-parameter-verification -->
+        <!-- （非必要） -->
         <dependency>
             <groupId>com.mylomen</groupId>
             <artifactId>active-parameter-verification</artifactId>
-            <version>0.0.1</version>
+            <version>0.0.2</version>
         </dependency>
 
+        <!-- Source: https://mvnrepository.com/artifact/com.ctrip.framework.apollo/apollo-client -->
+        <dependency>
+            <groupId>com.ctrip.framework.apollo</groupId>
+            <artifactId>apollo-client</artifactId>
+            <version>2.4.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- 测试 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-            <version>2.0.8.RELEASE</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.ctrip.framework.apollo</groupId>
-            <artifactId>apollo-client</artifactId>
-            <version>1.7.0</version>
-
-            <!-- 如果引用的项目中有 apollo 依赖，这里建议使用 provided; 如果项目 中没有apollo 建议在项目中自行引入apollo 依赖。不建议在底层包引入过多的依赖 -->
-            <scope>provided</scope>
-        </dependency>
     </dependencies>
-
-
-    <!-- 自行填充 deploy 地址-->
 
     <build>
         <plugins>
+
+            <!-- JDK21 编译器 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>3.13.0</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                    <showWarnings>true</showWarnings>
+                    <release>21</release>
                 </configuration>
             </plugin>
+
+            <!-- 源码包 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.0.1</version>
+                <version>3.3.1</version>
                 <executions>
-
                     <execution>
                         <id>attach-sources</id>
-                        <phase>verify</phase><!--  要绑定到的生命周期的阶段 在verify之后，install之前执行下面指定的goal -->
+                        <phase>verify</phase>
                         <goals>
-                            <goal>jar-no-fork</goal><!-- 类似执行mvn source:jar -->
+                            <goal>jar-no-fork</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>
+
         </plugins>
     </build>
+
 </project>

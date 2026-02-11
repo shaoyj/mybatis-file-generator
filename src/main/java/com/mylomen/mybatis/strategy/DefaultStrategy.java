@@ -21,7 +21,7 @@ public class DefaultStrategy implements ParseTabInfoListStrategy {
     public static XxqMybatisBO getTabInfoList(XxqMybatisBO dbBaseInfo) {
 
         dbBaseInfo.setTabInfoList(DbInfoUtil.getTableInfo(
-                dbBaseInfo.getDriver() == null ? "com.mysql.jdbc.Driver" : dbBaseInfo.getDriver(),
+                dbBaseInfo.getDriver() == null ? "com.mysql.cj.jdbc.Driver" : dbBaseInfo.getDriver(),
                 dbBaseInfo.getDbUrl(),
                 dbBaseInfo.getUserName(),
                 dbBaseInfo.getPassword(),

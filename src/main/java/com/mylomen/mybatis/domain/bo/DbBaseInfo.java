@@ -17,7 +17,7 @@ import java.io.Serializable;
 @Getter
 public class DbBaseInfo implements Serializable {
     /**
-     * 默认 com.mysql.jdbc.Driver
+     * 默认 com.mysql.cj.jdbc.Driver
      */
     private String driver;
 

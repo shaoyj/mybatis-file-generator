@@ -40,7 +40,7 @@ public class DbInfoUtil {
             throw new RuntimeException("dbUrl 不能为空");
         }
 
-        driver = driver == null ? "com.mysql.jdbc.Driver" : driver;
+        driver = driver == null ? "com.mysql.cj.jdbc.Driver" : driver;
 
         List<DbTabInfo> result = new ArrayList<>();
         Connection conn = null;
@@ -106,6 +106,8 @@ public class DbInfoUtil {
             case "INT UNSIGNED":
             case "SMALLINT":
             case "SMALLINT UNSIGNED":
+            case "TINYINT":
+            case "TINYINT UNSIGNED":
             case "INTEGER":
             case "INTEGER UNSIGNED":
                 return "Integer";

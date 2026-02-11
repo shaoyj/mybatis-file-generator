@@ -66,7 +66,7 @@ public class ApolloStrategy implements ParseTabInfoListStrategy {
 
         //获取表配置
         xxqMybatisBO.setTabInfoList(DbInfoUtil.getTableInfo(
-                config.getProperty("com.mysql.jdbc.Driver", "com.mysql.jdbc.Driver"),
+                config.getProperty("com.mysql.cj.jdbc.Driver", "com.mysql.cj.jdbc.Driver"),
                 datasourceUrl,
                 config.getProperty("spring.datasource.username", ""),
                 config.getProperty("spring.datasource.password", ""),
